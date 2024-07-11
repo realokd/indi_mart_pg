@@ -29,7 +29,7 @@ export function LobbySkeleton() {
           className="animate-fade-up"
           style={{ animationDelay: "0.20s", animationFillMode: "both" }}
         >
-          Foundation for your commerce platform
+          One Stop Solution for all tools
         </PageHeaderHeading>
         <PageHeaderDescription
           className="max-w-[46.875rem] animate-fade-up"

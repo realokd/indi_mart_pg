@@ -110,7 +110,7 @@ export const product = pgTable("product", {
     onDelete: "cascade",
   }),
   price: integer("price").notNull().default(0),
-  orignalPrice: integer("price"),
+  orignalPrice: integer("orignalPrice"),
   inventory: integer("inventory").$default(() => 0),
   status: statusEnum("status").$default(() => "INSERT").notNull(),
 });
@@ -217,7 +217,7 @@ export const cartRelations = relations(carts, ({ one, many }) => ({
 }));
 
 export const cartDetails = pgTable("cart_details", {
-  id: serial("id").primaryKey(),
+  id: serial("id").primaryKey().notNull(),
   cartId: integer("cart_id").references(() => carts.id, { onDelete: "cascade" }),
   productId: integer("product_id").references(() => product.id),
   // productPriceId: integer("product_price_id").references(() => productPrice.id),

@@ -25,7 +25,7 @@ export function CategoryCard({ category }: CategoryCardProps) {
   })
 
   return (
-    <Link href={`/collections/${category.slug}`}>
+    <Link href={`/collections/${category.name}`}>
       <Card className="h-full rounded-lg transition-colors hover:bg-muted/25">
         <CardHeader className="flex-1">
           <CardTitle className="capitalize">{category.name}</CardTitle>

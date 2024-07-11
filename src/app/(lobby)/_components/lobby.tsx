@@ -1,7 +1,7 @@
 import Link from "next/link"
 
 import { siteConfig } from "@/config/site"
-import type { getCategories, getFeaturedProducts } from "@/lib/queries/product"
+import type { getCategories, getAllProducts } from "@/lib/queries/product"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { buttonVariants } from "@/components/ui/button"
@@ -20,7 +20,7 @@ import { StoreCard } from "@/components/store-card"
 import { CategoryCard } from "./category-card"
 
 interface LobbyProps {
-  productsPromise: ReturnType<typeof getFeaturedProducts>
+  productsPromise: ReturnType<typeof getAllProducts>
   categoriesPromise: ReturnType<typeof getCategories>
 }
 
@@ -29,7 +29,7 @@ export async function Lobby({
   categoriesPromise,
 }: LobbyProps) {
   // @see the "Parallel data fetching" docs: https://nextjs.org/docs/app/building-your-application/data-fetching/patterns#parallel-data-fetching
-  const [ products, categories, stores] = await Promise.all([
+  const [ products, categories] = await Promise.all([
     productsPromise,
     categoriesPromise,
   ])
@@ -45,14 +45,13 @@ export async function Lobby({
           className="animate-fade-up"
           style={{ animationDelay: "0.20s", animationFillMode: "both" }}
         >
-          Foundation for your commerce platform
+          One Stop Solution for all tools
         </PageHeaderHeading>
         <PageHeaderDescription
           className="max-w-[46.875rem] animate-fade-up"
           style={{ animationDelay: "0.30s", animationFillMode: "both" }}
         >
-          Skateshop is an open-source platform for building and customizing your
-          own commerce platform with ease.
+          Vanya Enterprise is your One Stop Solution for all tools. Get all the tools yuo need at Vanya Enterprise
         </PageHeaderDescription>
         <PageActions
           className="animate-fade-up"
