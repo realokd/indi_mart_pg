@@ -26,11 +26,26 @@ import {
 export const statusEnum = pgEnum("status", ["INSERT", "DELETE", "UPDATE"]);
 export const paymentEnum = pgEnum("paymentStatus", ["PAID", "NOT PAID"]);
 
+export const sessions = pgTable("sessions", {
+  id: serial("id").primaryKey(),
+  sessionId: varchar("session_id").notNull().unique(),
+  expiryDate: timestamp("expiry_date").default(sql`now() + interval '7 days'`).notNull(),
+  userId: integer("user_id").references(() => users.id).notNull()
+})
+
+export const sessionRelations = relations(sessions, ({ one, many }) => ({
+  cart: one(users, {
+    fields: [sessions.userId],
+    references: [users.id],
+  }),
+}));
+
 export const users = pgTable("users", {
   id: serial("id").primaryKey(),
-  fullName: varchar("full_name", { length: 256 }),
+  fullName: varchar("full_name", { length: 256 }).notNull(),
   phone: varchar("phone", { length: 10 }).notNull().unique(),
   email: varchar("email", { length: 100 }).unique(),
+  password: varchar("password").notNull(),
   status: statusEnum("status").$default(() => "INSERT").notNull(),
   createdAt: timestamp("created_at")
     .default(sql`CURRENT_TIMESTAMP`)
@@ -43,6 +58,7 @@ export const userRelations = relations(users, ({ one, many }) => ({
     fields: [users.id],
     references: [carts.userId],
   }),
+  session: many(sessions),
   orders: many(orders),
   addresses: many(address),
 }));

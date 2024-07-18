@@ -45,12 +45,12 @@ export function LobbySkeleton() {
           <Link href="/products" className={cn(buttonVariants())}>
             Buy now
           </Link>
-          <Link
+          {/* <Link
             href="/dashboard/stores"
             className={cn(buttonVariants({ variant: "outline" }))}
           >
             Sell now
-          </Link>
+          </Link> */}
         </PageActions>
       </PageHeader>
       <section className="grid grid-cols-1 gap-4 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">

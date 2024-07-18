@@ -31,3 +31,13 @@ export function isMacOs() {
 
   return window.navigator.userAgent.includes("Mac")
 }
+
+export function encodeToBase64(data: object) {
+  let bufferObj = Buffer.from(JSON.stringify(data), "utf8");
+  return bufferObj.toString("base64")
+}
+
+export function decodeFromBase64(data: string) {
+  let bufferObj = Buffer.from(data, "base64");
+  return JSON.parse(bufferObj.toString("utf8"))
+}

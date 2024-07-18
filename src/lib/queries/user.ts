@@ -4,10 +4,11 @@ import { cache } from "react"
 import { unstable_noStore as noStore } from "next/cache"
 import { db } from "@/server/db"
 import { product } from "@/server/db/schema"
-// import { currentUser } from "@clerk/nextjs/server"
 import { count, countDistinct, eq } from "drizzle-orm"
 import { resolve } from "path"
 import { rejects } from "assert"
+import { cookies } from "next/headers"
+import { decodeFromBase64 } from "../utils"
 
 
 /**
@@ -17,9 +18,11 @@ import { rejects } from "assert"
  */
 // export const getCachedUser = cache(currentUser)
 export const getCachedUser = () => {
-  return new Promise((resolve, reject) => {
-    resolve({ userName: "", cart: [] })
-  })
+  const cookie = cookies().get("sessionId")?.value
+  let user;
+  if (cookie)
+    user = decodeFromBase64(cookie)
+  return Promise.resolve(user)
 }
 
 

@@ -3,7 +3,7 @@
 import * as React from "react"
 import { MinusIcon, PlusIcon, TrashIcon } from "@radix-ui/react-icons"
 
-import { deleteCartItem, updateCartItem } from "@/lib/actions/cart"
+// import { deleteCartItem, updateCartItem } from "@/lib/actions/cart"
 import { showErrorToast } from "@/lib/handle-error"
 import { type CartLineItemSchema } from "@/lib/validations/cart"
 import { Button } from "@/components/ui/button"
@@ -25,18 +25,18 @@ export function UpdateCart({ cartLineItem }: UpdateCartProps) {
           variant="outline"
           size="icon"
           className="size-8 rounded-r-none"
-          onClick={() => {
-            startTransition(async () => {
-              try {
-                await updateCartItem({
-                  productId: cartLineItem.id,
-                  quantity: Number(cartLineItem.quantity) - 1,
-                })
-              } catch (err) {
-                showErrorToast(err)
-              }
-            })
-          }}
+          // onClick={() => {
+          //   startTransition(async () => {
+          //     try {
+          //       await updateCartItem({
+          //         productId: cartLineItem.id,
+          //         quantity: Number(cartLineItem.quantity) - 1,
+          //       })
+          //     } catch (err) {
+          //       showErrorToast(err)
+          //     }
+          //   })
+          // }}
           disabled={isPending}
         >
           <MinusIcon className="size-3" aria-hidden="true" />
@@ -48,18 +48,18 @@ export function UpdateCart({ cartLineItem }: UpdateCartProps) {
           min="0"
           className="h-8 w-14 rounded-none border-x-0"
           value={cartLineItem.quantity}
-          onChange={(e) => {
-            startTransition(async () => {
-              try {
-                await updateCartItem({
-                  productId: cartLineItem.id,
-                  quantity: Number(e.target.value),
-                })
-              } catch (err) {
-                showErrorToast(err)
-              }
-            })
-          }}
+          // onChange={(e) => {
+          //   startTransition(async () => {
+          //     try {
+          //       await updateCartItem({
+          //         productId: cartLineItem.id,
+          //         quantity: Number(e.target.value),
+          //       })
+          //     } catch (err) {
+          //       showErrorToast(err)
+          //     }
+          //   })
+          // }}
           disabled={isPending}
         />
         <Button
@@ -67,18 +67,18 @@ export function UpdateCart({ cartLineItem }: UpdateCartProps) {
           variant="outline"
           size="icon"
           className="size-8 rounded-l-none"
-          onClick={() => {
-            startTransition(async () => {
-              try {
-                await updateCartItem({
-                  productId: cartLineItem.id,
-                  quantity: Number(cartLineItem.quantity) + 1,
-                })
-              } catch (err) {
-                showErrorToast(err)
-              }
-            })
-          }}
+          // onClick={() => {
+          //   startTransition(async () => {
+          //     try {
+          //       await updateCartItem({
+          //         productId: cartLineItem.id,
+          //         quantity: Number(cartLineItem.quantity) + 1,
+          //       })
+          //     } catch (err) {
+          //       showErrorToast(err)
+          //     }
+          //   })
+          // }}
           disabled={isPending}
         >
           <PlusIcon className="size-3" aria-hidden="true" />
@@ -90,17 +90,17 @@ export function UpdateCart({ cartLineItem }: UpdateCartProps) {
         variant="outline"
         size="icon"
         className="size-8"
-        onClick={() => {
-          startTransition(async () => {
-            try {
-              await deleteCartItem({
-                productId: cartLineItem.id,
-              })
-            } catch (err) {
-              showErrorToast(err)
-            }
-          })
-        }}
+        // onClick={() => {
+        //   startTransition(async () => {
+        //     try {
+        //       await deleteCartItem({
+        //         productId: cartLineItem.id,
+        //       })
+        //     } catch (err) {
+        //       showErrorToast(err)
+        //     }
+        //   })
+        // }}
         disabled={isPending}
       >
         <TrashIcon className="size-3" aria-hidden="true" />

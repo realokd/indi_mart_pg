@@ -13,23 +13,29 @@ export async function getCart(userId: number) {
     const cartId = await db.query.carts.findFirst({
       where: eq(carts.userId, userId),
     })
-
-    const cartItems = await db.select({
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      images: product.images,
-      inventory: product.inventory,
-      quantity: cartDetails.quantity,
-      category: category.name,
-    })
-      .from(cartDetails)
-      .leftJoin(product, eq(product.id, cartDetails.productId))
-      .leftJoin(category, eq(category.id, product.categoryId))
-      .where(eq(carts.userId, userId))
-
-    return cartItems
+    if(cartId) {
+      const cartItems = await db.select({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        images: product.images,
+        inventory: product.inventory,
+        quantity: cartDetails.quantity,
+        category: category.name,
+      })
+        .from(cartDetails)
+        .leftJoin(product, eq(product.id, cartDetails.productId))
+        .leftJoin(category, eq(category.id, product.categoryId))
+        .where(eq(cartDetails.cartId, cartId?.id))
+      return cartItems
+    }
+   
+    return []
   } catch (err) {
     return []
   }
 }
+
+// export async function addToCart(params:type) {
+  
+// }

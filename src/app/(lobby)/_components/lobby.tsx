@@ -60,12 +60,12 @@ export async function Lobby({
           <Link href="/products" className={cn(buttonVariants())}>
             Buy now
           </Link>
-          <Link
+          {/* <Link
             href="/dashboard/stores"
             className={cn(buttonVariants({ variant: "outline" }))}
           >
             Sell now
-          </Link>
+          </Link> */}
         </PageActions>
       </PageHeader>
       <section
