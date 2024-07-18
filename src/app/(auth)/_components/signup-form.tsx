@@ -77,7 +77,7 @@ export function SignUpForm() {
           name="phone"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>Phone Number</FormLabel>
               <FormControl>
                 <Input placeholder="9999999999" {...field} />
               </FormControl>

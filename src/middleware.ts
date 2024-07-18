@@ -5,21 +5,12 @@ import { revalidatePath } from 'next/cache'
 
 export default function middleware(request: NextRequest) {
   const currentUser = request.cookies.get('sessionId')?.value
-  // console.log(currentUser);
-  // if (currentUser) {
-  //   return NextResponse.next()
-  // }
-  // return NextResponse.redirect(new URL('/signin', request.url))
-
-  // if (currentUser && !request.nextUrl.pathname.startsWith('/')) {
-  //   return Response.redirect(new URL('/', request.url))
-  // }
-
-  // if (!currentUser && !request.nextUrl.pathname.startsWith('/signin')) {
-  //   return Response.redirect(new URL('/signin', request.url))
-  // }
+  const previousUrl = request.headers.get('referer') || '/';
+  if(currentUser){
+    return NextResponse.redirect(new URL(previousUrl, request.url));
+  }
 }
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|.*\\.png$).*)'],
+  matcher: ['/signin', '/signup'],
 }

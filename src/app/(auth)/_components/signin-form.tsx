@@ -71,7 +71,7 @@ export function SignInForm() {
           name="phone"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>Phone Number</FormLabel>
               <FormControl>
                 <Input
                   type="text"
